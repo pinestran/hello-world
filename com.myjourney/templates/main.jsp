@@ -45,14 +45,7 @@
 		</c:if>
 		<div id="#top"></div>
 		<cms:container name="navbar">
-			<h3> Drap and drop the Nav Bar top content type here</h3>
-			<h3>Drap and drop Banner Slider content type here</h3>
-			<h3>Drap and drop the Most Popular Package content type here</h3>
-			<h3>Drap and drop the Quote content type here</h3>
-			<h3>Drap and drop The About-Us content type here </h3>
-			<h3>Drap and drop The Gallery content type here </h3>
-			<h3>Drap and drop The Contact content type here </h3>
-			<h3>Drap and drop The Footer-Social content type here </h3>
+			<h3> Drap and drop any content types here.</h3>
 		</cms:container>
 		<a href="#top" class="topHome"><i class="fa fa-chevron-up fa-2x"></i></a>
 

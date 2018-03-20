@@ -1,12 +1,15 @@
 package com.thongtv.service.Impl;
 
+/***
+ * class implement HomeService.
+ */
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +29,10 @@ import org.opencms.main.CmsException;
 import org.opencms.main.CmsLog;
 import org.opencms.main.OpenCms;
 import org.opencms.security.CmsOrgUnitManager;
-import org.opencms.workplace.tools.accounts.CmsEditUserDialog;
 
-import com.thongtv.constant.Constants;
 import com.thongtv.entities.User;
+import com.thongtv.model.Constants;
+import com.thongtv.model.Result;
 import com.thongtv.service.HomeService;
 
 public class HomeServiceImpl implements HomeService {
@@ -261,4 +264,51 @@ public class HomeServiceImpl implements HomeService {
         }
         return users;
     }
+
+	@Override
+	public Result register() {
+
+		Result result = new Result(0,"Register Fail.");
+
+		String lastName = request.getParameter(Constants.LAST_NAME);
+		String firstName = request.getParameter(Constants.FIRST_NAME);
+		String email = request.getParameter(Constants.EMAIL);
+		String password = request.getParameter(Constants.PASSWORD);
+		
+		if(StringUtils.isBlank(lastName) 
+				|| StringUtils.isBlank(firstName) 
+				|| StringUtils.isBlank(email) 
+				|| StringUtils.isBlank(password)){
+			return result;
+		}
+		
+		try {
+			CmsUser newUser = cmsO.createUser(email, password, "", null);
+			newUser.setLastname(lastName);
+			newUser.setFirstname(firstName);
+			newUser.setEmail(email);
+			
+			cmsO.writeUser(newUser);
+			sendMail(email, "New Account On MyTrip Webside", "Hi "+ lastName + " " + firstName
+					+ "<br><br>Thanks for your concern to our services. <br>Your new Account is:<br>"
+					+ "Email: "+ email + "<br>"
+					+ "Password: "+ password +"<br>Keep this info in mind.^^<br><br> Thanks and best regard");
+			return new Result(1, "Register Successed. Check your mail please.");
+		} catch (CmsException e) {
+			LOG.error("Error in saveInfoUserContact: {}",e);
+		}
+		
+		return result;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+

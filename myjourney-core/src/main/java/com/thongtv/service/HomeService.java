@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.opencms.file.CmsUser;
 
+import com.thongtv.model.Result;
+
 /***
  * 
  * @author thong.tv
@@ -27,5 +29,11 @@ public interface HomeService {
      * @return
      */
     public List<CmsUser> getOpenCmsUsers();
+    
+    /**
+     * register user.
+     * @return
+     */
+    public Result register();
     
 }
