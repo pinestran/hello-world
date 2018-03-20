@@ -1,15 +1,26 @@
+<%@page import="com.thongtv.service.Impl.HomeServiceImpl"%>
 <%@page buffer="none" session="false" trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="cms" uri="http://www.opencms.org/taglib/cms"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <cms:formatter var="content">
+<%
+	HomeServiceImpl home = new HomeServiceImpl(pageContext, request, response);
+	if(home.saveInfoUserContact()){
+		System.out.println("Insert success.");
+	}
+	else{
+		System.out.println("Insert fail.");
+	}
+%>
 	<c:set var="hashTag" value="${content.value.HashTag}" />
 	<c:set var="Title" value="${content.value.Title}" />
 	<c:set var="ShortDes" value="${content.value.ShortDes}"/>
 	<c:set var="DetailInfo" value="${content.value.DetailInfo}" />
 	<c:set var="Image" value="${content.value.Image}" />
-	<c:set var="NameLabel" value="${content.value.NameLabel}" />
+	<c:set var="FirstNameLabel" value="${content.value.FirstNameLabel}" />
+	<c:set var="LastNameLabel" value="${content.value.LastNameLabel}" />
 	<c:set var="EmailLabel" value="${content.value.EmailLabel}" />
 	<c:set var="CommentsLabel" value="${content.value.CommentsLabel}" />
 	<c:set var="SubmitLabel" value="${content.value.SubmitLabel}" />
@@ -32,8 +43,12 @@
 
 					<div class="col-sm-4">
 						<div class="form-group">
-							<label for="name">${NameLabel}</label>
-							<input type="text" class="form-control" name="name" id="name" placeholder="Enter name" title="Please enter your name (at least 2 characters)">
+							<label for="name">${FirstNameLabel}</label>
+							<input type="text" class="form-control" name="firstname" id="name" placeholder="Enter first name" title="Please enter your name (at least 2 characters)">
+						</div>
+						<div class="form-group">
+							<label for="name">${LastNameLabel}</label>
+							<input type="text" class="form-control" name="lastname" id="name" placeholder="Enter last name" title="Please enter your name (at least 2 characters)">
 						</div>
 						<div class="form-group">
 							<label for="email">${EmailLabel}</label>

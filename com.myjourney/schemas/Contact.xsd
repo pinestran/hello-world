@@ -17,7 +17,8 @@
 			<xsd:element name="ShortDes" type="OpenCmsString" />
 			<xsd:element name="DetailInfo" type="OpenCmsHtml" />
 			<xsd:element name="Image" type="OpenCmsVfsFile" />
-			<xsd:element name="NameLabel" type="OpenCmsString" />
+			<xsd:element name="LastNameLabel" type="OpenCmsString" />
+			<xsd:element name="FirstNameLabel" type="OpenCmsString" />
 			<xsd:element name="EmailLabel" type="OpenCmsString" />
 			<xsd:element name="CommentsLabel" type="OpenCmsString" />
 			<xsd:element name="SubmitLabel" type="OpenCmsString" />
@@ -34,7 +35,8 @@
 			<defaults>
 				<default element="HashTag" value="Remember input HashTag match with HashTag on Navigation Header Content Type" />
 				<default element="Title" value="Add a new Contact US title here" />
-				<default element="NameLabel" value="Name" />
+				<default element="LastNameLabel" value="Last Name" />
+				<default element="FirstNameLabel" value="First Name" />
 				<default element="EmailLabel" value="Email" />
 				<default element="CommentsLabel" value="Comments" />
 				<default element="SubmitLabel" value="Submit" />
