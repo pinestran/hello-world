@@ -6,106 +6,8 @@
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {font-family: Arial, Helvetica, sans-serif;}
-#content{
-	width: 50%;
-	margin: 0 auto;
-}
-form {border: 3px solid #f1f1f1;}
-
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-}
-
-button:hover {
-    opacity: 0.8;
-}
-
-.cancelbtn {
-    width: auto;
-    padding: 10px 18px;
-    background-color: #f44336;
-}
-
-.imgcontainer {
-    text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-       display: block;
-       float: none;
-    }
-    .cancelbtn {
-       width: 100%;
-    }
-}
-#login-session{
-	display: block;
-}
-
-#forgot-session{
-	display: none;
-}
-
-#register-session{
-	display: none;
-}
-</style>
-
-<script>
-	$(document).ready(function(){
-		$(".forgot").click(function(){
-			$("#login-session").css('display','none');
-			$("#register-session").css('display','none');
-			$("#forgot-session").css('display','block');
-		});
-		$(".backtosignin").click(function(){
-			$("#login-session").css('display','block');
-			$("#forgot-session").css('display','none');
-			$("#register-session").css('display','none');
-		});
-		$("#register").click(function(){
-			$("#login-session").css('display','none');
-			$("#forgot-session").css('display','none');
-			$("#register-session").css('display','block');
-		});
-	});
-
-</script>
-
+<style type="text/css" ></style>
+<link rel="stylesheet" type="text/css" href="<cms:link> /system/modules/com.myjourney/resources/css/login.css</cms:link>"/>
 <cms:enable-ade/>
 </head>
 <body>
@@ -125,7 +27,7 @@ span.psw {
 		    <input type="text" placeholder="Enter email" name="email" required>
 		
 		    <label for="psw"><b>Password</b></label>
-		    <input type="password" placeholder="Enter Password" name="psw" required>
+		    <input type="password" placeholder="Enter Password" name="password" required>
 		        
 		    <button type="submit">Login</button>
 		    <a href="#" id="register" style="text-align:center;">Register</a>
@@ -162,25 +64,25 @@ span.psw {
 	</div>
 	<div id="register-session">
 	<h2>Register Form</h2>
-		<form action="/action_page.php" >
+		<form id="SubmitForm" action="<cms:link>/system/modules/com.myjourney/elements/register.jsp</cms:link>" method="post">
 		  <div class="imgcontainer">
 		    <img src="<cms:link>/system/modules/com.myjourney/resources/images/w3images/img_avatar2.png</cms:link>" alt="Avatar" class="avatar">
 		  </div>
 		
 		  <div class="container">
 		  	<label for="uname"><b>First Name</b></label>
-		    <input type="text" placeholder="Enter First Name" name="firstName" required>
+		    <input type="text" placeholder="Enter First Name" name="firstname" required>
 		    
 		    <label for="uname"><b>Last Name</b></label>
-		    <input type="text" placeholder="Enter Last Name" name="lastName" required>
+		    <input type="text" placeholder="Enter Last Name" name="lastname" required>
 		    
 		    <label for="uname"><b>email</b></label>
 		    <input type="text" placeholder="Enter email" name="email" required>
 		
 		    <label for="psw"><b>Password</b></label>
-		    <input type="password" placeholder="Enter Password" name="psw" required>
+		    <input type="password" placeholder="Enter Password" name="password" required>
 		        
-		    <button type="submit">Register</button>
+		    <button type="submit" data-popup-open="popup-1" >Register</button>
 		    <a href="#" class="backtosignin" >Back To Signin</a>
 		   <!--  <label>
 		      <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -193,6 +95,17 @@ span.psw {
 	  	   </div>
 		</form>	
 	</div>
+		
+	<div class="popup" data-popup="popup-1">
+		<div class="popup-inner">
+			<h2 id="type-json"></h2>
+			<p id="message-json"></p>
+			<p><a data-popup-close="popup-1" href="#">Close</a></p>
+			<a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+		</div>
+	</div>
+	
 </div>
+<script type="text/javascript" src="<cms:link>/system/modules/com.myjourney/resources/js/login.js</cms:link>"></script>
 </body>
 </html>

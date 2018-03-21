@@ -30,9 +30,9 @@ import org.opencms.main.CmsLog;
 import org.opencms.main.OpenCms;
 import org.opencms.security.CmsOrgUnitManager;
 
-import com.thongtv.entities.User;
 import com.thongtv.model.Constants;
 import com.thongtv.model.Result;
+import com.thongtv.model.User;
 import com.thongtv.service.HomeService;
 
 public class HomeServiceImpl implements HomeService {
@@ -57,54 +57,22 @@ public class HomeServiceImpl implements HomeService {
 		this.user = cms.getRequestContext().getCurrentUser();
 	}
 
-	public HttpServletRequest getRequest() {
-		return request;
+	public Result login(){
+		Result result = new Result(0, "Login fail");
+		
+		String email = request.getParameter(Constants.EMAIL);
+		String pass = request.getParameter(Constants.PASSWORD);
+		if(StringUtils.isBlank(email) || StringUtils.isBlank(pass)){
+			return result;
+		}
+		bean.login(email, pass);
+		if(bean.isLoggedIn()){
+			return new Result(1, "Login success");
+		}
+		
+		return result;
 	}
-
-	public void setRequest(HttpServletRequest request) {
-		this.request = request;
-	}
-
-	public HttpServletResponse getResponse() {
-		return response;
-	}
-
-	public void setResponse(HttpServletResponse response) {
-		this.response = response;
-	}
-
-	public CmsJspActionElement getCms() {
-		return cms;
-	}
-
-	public void setCms(CmsJspActionElement cms) {
-		this.cms = cms;
-	}
-
-	public CmsObject getCmsO() {
-		return cmsO;
-	}
-
-	public void setCmsO(CmsObject cmsO) {
-		this.cmsO = cmsO;
-	}
-
-	public CmsJspLoginBean getBean() {
-		return bean;
-	}
-
-	public void setBean(CmsJspLoginBean bean) {
-		this.bean = bean;
-	}
-
-	public CmsUser getUser() {
-		return user;
-	}
-
-	public void setUser(CmsUser user) {
-		this.user = user;
-	}
-
+	
 	/**
 	 * this funtion to get and save info of user into database, and  feedback 
 	 */
@@ -280,6 +248,13 @@ public class HomeServiceImpl implements HomeService {
 				|| StringUtils.isBlank(email) 
 				|| StringUtils.isBlank(password)){
 			return result;
+		}
+		
+		if(!bean.isLoggedIn()){
+			bean.login("Admin", "admin");
+			if(!bean.isLoginSuccess()){
+				return result;
+			}
 		}
 		
 		try {

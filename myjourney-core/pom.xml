@@ -140,26 +140,7 @@
 			<version>1.4.0</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.opencms.modules</groupId>
-			<artifactId>org.opencms.workplace</artifactId>
-			<version>${opencms.version}</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/org.opencms.workplace.jar</systemPath>
-		</dependency>
-
-		<dependency>
-			<groupId>org.opencms</groupId>
-			<artifactId>org.opencms.workplace.tools.accounts</artifactId>
-			<version>10.5.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.safehaus.jug</groupId>
-			<artifactId>jug</artifactId>
-			<version>2.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/libs/jug-2.0.0-lgpl.jar</systemPath>
-		</dependency>
+		
 
 	</dependencies>
 

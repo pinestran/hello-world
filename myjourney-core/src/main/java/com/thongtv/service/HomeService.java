@@ -13,6 +13,12 @@ import com.thongtv.model.Result;
  */
 
 public interface HomeService {
+	
+	/**
+	 * login function.
+	 * @return
+	 */
+	public Result login();
 
 	/**
 	 * get and save info user into database.

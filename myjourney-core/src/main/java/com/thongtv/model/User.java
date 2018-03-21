@@ -1,4 +1,4 @@
-package com.thongtv.entities;
+package com.thongtv.model;
 
 public class User {
 	
